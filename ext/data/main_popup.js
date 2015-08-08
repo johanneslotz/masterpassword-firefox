@@ -62,19 +62,19 @@ function recalculate(hide_after_copy, retry) {
 
     console.log("calc password "+$('#sitename').val()+" . "+parseInt($('#passwdgeneration').val())+" . "+$('#passwdtype').val());
     var i,s="",pass=mpw_session($('#sitename').val(), parseInt($('#passwdgeneration').val()), $('#passwdtype').val());
-        verify_pass=mpw_session(".", 0, "n");
-        for (i=0;i<pass.length;i++)s+="&middot;";
+    var verify_pass=mpw_session(".", 0, "n");
+    for (i=0;i<pass.length;i++)s+="&middot;";
 
-        $('#verify_pass_fld').html("Verify: "+verify_pass);
-        $('#thepassword').html('<a href="" id="showpass">'+s+'</a>');
-        $('#thepassword').attr('data-pass',pass);
+    $('#verify_pass_fld').html("Verify: "+verify_pass);
+    $('#thepassword').html('<a href="" id="showpass">'+s+'</a>');
+    $('#thepassword').attr('data-pass',pass);
 
-        copy_to_clipboard("text/plain",pass);
-        update_page_password_input(pass);
-        if (hide_after_copy) {
-            addon.port.emit('close');
-        }
-        $('#usermessage').html("Password for "+$('#sitename').val()+" copied to clipboard");
+    copy_to_clipboard("text/plain",pass);
+    update_page_password_input(pass);
+    if (hide_after_copy) {
+        addon.port.emit('close');
+    }
+    $('#usermessage').html("Password for "+$('#sitename').val()+" copied to clipboard");
 }
 
 function update_with_settings_for(domain) {
